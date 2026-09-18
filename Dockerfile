@@ -102,6 +102,8 @@ RUN chown -R appuser:appuser /app /tmp/Ultralytics
 # Build React frontend
 RUN cd /app/dashboard && npm ci && npm run build
 RUN echo "" >> /app/app.py && echo "if os.path.exists('/app/dashboard/dist'):" >> /app/app.py && echo "    app.mount('/', StaticFiles(directory='/app/dashboard/dist', html=True), name='frontend')" >> /app/app.py
+RUN pip install openai -q
+RUN python3 /app/oa_patch.py
 # Switch to non-root user
 USER appuser
 
