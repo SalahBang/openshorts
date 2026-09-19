@@ -61,9 +61,9 @@ def delivery_size(orig_w, orig_h, aspect_ratio):
         out_w = DELIVERY_MIN_WIDTH
         out_h = int(round(out_w / aspect_ratio))
 
-    if out_w > 1280:
-        out_w = 1280
-        out_h = int(round(out_w / aspect_ratio))
+    if out_h > 1280:
+        out_h = 1280
+        out_w = int(round(out_h * aspect_ratio))
     return out_w + (out_w % 2), out_h + (out_h % 2)
 
 
